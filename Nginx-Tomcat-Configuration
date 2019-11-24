@@ -1,0 +1,22 @@
+Nginx_Tomcat_Configuration
+=============================
+
+upstream crmdev {
+    server 172.17.0.3:8080;
+    server 172.17.0.3:8181;
+}
+server {
+  listen       80;
+  server_name  localhost;
+
+  #location / {
+  #    root   /usr/share/nginx/html;
+  #    index  index.html index.htm;
+  #}
+
+  location / {
+    proxy_pass http://crmdev;
+  }
+
+}
+
